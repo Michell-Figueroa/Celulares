@@ -1,0 +1,39 @@
+[
+    {
+        "cliente": "Carlos",
+        "marca": "Samsung",
+        "modelo": "A54",
+        "problema": "Pantalla rota",
+        "costo": "1500",
+        "estado": "En reparación",
+        "foto": "cel1.png"
+    },
+    {
+        "cliente": "María",
+        "marca": "Apple",
+        "modelo": "iPhone 13",
+        "problema": "La batería dura muy poco",
+        "costo": "900",
+        "estado": "Terminado",
+        "foto": "cel2.png"
+    },
+    {
+        "cliente": "Luis",
+        "marca": "Motorola",
+        "modelo": "G84",
+        "problema": "El equipo no enciende",
+        "costo": "700",
+        "estado": "Pendiente",
+        "foto": "cel3.png"
+    },
+    {
+        "cliente": "Rosa",
+        "marca": "Samnsung",
+        "modelo": "1",
+        "problema": "no sirve",
+        "costo": "500",
+        "estado": "Pendiente",
+        "foto": "cel3.png"
+    }
+]
+

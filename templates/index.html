@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Taller Jaime
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+    <div>
+
+        <h1>
+            📱 Taller Jaime
+        </h1>
+
+        <span>
+            Control de equipos
+        </span>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <span>
+            Bienvenido,
+            <strong>
+                {{ usuario }}
+            </strong>
+        </span>
+
+        <a href="{{ url_for('logout') }}" class="logout">
+            Cerrar sesión
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+    <!-- ENCABEZADO -->
+
+    <section class="hero">
+
+        <div>
+
+            <p class="eyebrow">
+                PANEL PRINCIPAL
+            </p>
+
+            <h2>
+                Equipos del taller
+            </h2>
+
+            <p class="muted">
+                Consulta los celulares que
+                se encuentran en el taller.
+            </p>
+
+        </div>
+
+        <a href="#nuevo" class="primary-button">
+            + Ingresar nuevo equipo
+        </a>
+
+    </section>
+
+
+
+    <!-- ESTADÍSTICAS -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <span>Equipos registrados</span>
+            <strong>{{ equipos|length }}</strong>
+        </div>
+
+        <div class="stat">
+            <span>Pendientes</span>
+            <strong>
+                {{ equipos|selectattr("estado", "equalto", "Pendiente")|list|length }}
+            </strong>
+        </div>
+
+        <div class="stat">
+            <span>Terminados</span>
+            <strong>
+                {{ equipos|selectattr("estado", "equalto", "Terminado")|list|length }}
+            </strong>
+        </div>
+
+    </section>
+
+
+
+    <!-- CELULARES REGISTRADOS -->
+
+    <section class="phones">
+
+
+        {% for equipo in equipos %}
+
+        <article class="phone-card">
+
+            <div class="phone-image">
+
+                {% if equipo.foto %}
+
+                <img
+                    src="{{ url_for('foto', nombre=equipo.foto) }}"
+                    alt="Fotografía del celular"
+                >
+
+                {% else %}
+
+                <div class="no-photo">📱</div>
+
+                {% endif %}
+
+            </div>
+
+            <div class="phone-content">
+
+                <span class="status">{{ equipo.estado }}</span>
+
+                <h3>{{ equipo.marca }} {{ equipo.modelo }}</h3>
+
+                <p><strong>Cliente:</strong> {{ equipo.cliente }}</p>
+
+                <p><strong>Problema:</strong> {{ equipo.problema }}</p>
+
+                <div class="price">${{ equipo.costo }}</div>
+
+            </div>
+
+        </article>
+
+        {% endfor %}
+
+
+
+        <!-- EQUIPOS EXTRA -->
+
+        <article class="phone-card">
+            <div class="phone-image">
+                <img src="{{ url_for('foto', nombre='xiaomi.jpg') }}" alt="Xiaomi Redmi Note 12">
+            </div>
+            <div class="phone-content">
+                <span class="status">Pendiente</span>
+                <h3>Xiaomi Redmi Note 12</h3>
+                <p><strong>Cliente:</strong> Andrea</p>
+                <p><strong>Problema:</strong> No carga la batería</p>
+                <div class="price">$650</div>
+            </div>
+        </article>
+
+
+        <article class="phone-card">
+            <div class="phone-image">
+                <img src="{{ url_for('foto', nombre='iphone11.jpg') }}" alt="Apple iPhone 11">
+            </div>
+            <div class="phone-content">
+                <span class="status">En reparación</span>
+                <h3>Apple iPhone 11</h3>
+                <p><strong>Cliente:</strong> Jorge</p>
+                <p><strong>Problema:</strong> Cámara trasera borrosa</p>
+                <div class="price">$1200</div>
+            </div>
+        </article>
+
+
+        <article class="phone-card">
+            <div class="phone-image">
+                <img src="{{ url_for('foto', nombre='huawei.jpg') }}" alt="Huawei P30 Lite">
+            </div>
+            <div class="phone-content">
+                <span class="status">Terminado</span>
+                <h3>Huawei P30 Lite</h3>
+                <p><strong>Cliente:</strong> Sofía</p>
+                <p><strong>Problema:</strong> Botón de encendido atorado</p>
+                <div class="price">$400</div>
+            </div>
+        </article>
+
+
+        <article class="phone-card">
+            <div class="phone-image">
+                <img src="{{ url_for('foto', nombre='motorola.jpg') }}" alt="Motorola Edge 40">
+            </div>
+            <div class="phone-content">
+                <span class="status">Pendiente</span>
+                <h3>Motorola Edge 40</h3>
+                <p><strong>Cliente:</strong> Daniel</p>
+                <p><strong>Problema:</strong> No se escucha por la bocina</p>
+                <div class="price">$550</div>
+            </div>
+        </article>
+
+
+        <article class="phone-card">
+            <div class="phone-image">
+                <img src="{{ url_for('foto', nombre='samsung.jpg') }}" alt="Samsung Galaxy S21">
+            </div>
+            <div class="phone-content">
+                <span class="status">En reparación</span>
+                <h3>Samsung Galaxy S21</h3>
+                <p><strong>Cliente:</strong> Valeria</p>
+                <p><strong>Problema:</strong> Se mojó y no enciende</p>
+                <div class="price">$1800</div>
+            </div>
+        </article>
+
+
+    </section>
+
+
+
+    <!-- NUEVO EQUIPO -->
+
+    <section id="nuevo" class="new-equipment">
+
+        <div class="section-title">
+
+            <p class="eyebrow">
+                REGISTRO
+            </p>
+
+            <h2>
+                Ingresar nuevo equipo
+            </h2>
+
+            <p class="muted">
+                Registra los datos del celular
+                que acaba de llegar al taller.
+            </p>
+
+        </div>
+
+
+        <form
+            method="POST"
+            action="{{ url_for('nuevo_equipo') }}"
+            enctype="multipart/form-data"
+            class="equipment-form"
+        >
+
+            <div>
+                <label>Nombre del cliente</label>
+                <input type="text" name="cliente" required>
+            </div>
+
+            <div>
+                <label>Marca</label>
+                <input
+                    type="text"
+                    name="marca"
+                    placeholder="Samsung, Apple, Motorola..."
+                    required
+                >
+            </div>
+
+            <div>
+                <label>Modelo</label>
+                <input type="text" name="modelo" required>
+            </div>
+
+            <div>
+                <label>Costo de reparación</label>
+                <input
+                    type="number"
+                    name="costo"
+                    min="0"
+                    step="0.01"
+                    required
+                >
+            </div>
+
+            <div class="full">
+                <label>Problema o síntomas</label>
+                <textarea
+                    name="problema"
+                    rows="4"
+                    placeholder="Describe qué le sucede al equipo..."
+                    required
+                ></textarea>
+            </div>
+
+            <div>
+                <label>Estado</label>
+                <select name="estado">
+                    <option>Pendiente</option>
+                    <option>En reparación</option>
+                    <option>Terminado</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Fotografía del celular</label>
+                <input
+                    type="file"
+                    name="foto"
+                    accept=".png,.jpg,.jpeg,.webp"
+                >
+            </div>
+
+            <div class="full">
+                <button type="submit" class="primary-button">
+                    Registrar equipo
+                </button>
+            </div>
+
+        </form>
+
+    </section>
+
+
+</main>
+
+
+</body>
+
+</html>
