@@ -24,7 +24,7 @@ APP_USER = "Michell" #Ejemplo Jaime
 # Ejemplo: "jaime"
 
 
-APP_PW_HASH = APP_PW_HASH = "32768:8:1$qEG2aSCNr0oCAuwx$8fce74beac9c76daa26351393135e805c57c9ffb6ad558835c891d1f451fcce3de67c9a63b233c5cf8ccd09fcf91da9c368976c4d6ecdc8ac26b335f182fd4a4"  # Ejemplo: "scrypt:32768:8:1$...$..."
+APP_PW_HASH = APP_PW_HASH = "scrypt:32768:8:1$qEG2aSCNr0oCAuwx$8fce74beac9c76daa26351393135e805c57c9ffb6ad558835c891d1f451fcce3de67c9a63b233c5cf8ccd09fcf91da9c368976c4d6ecdc8ac26b335f182fd4a4"  # Ejemplo: "scrypt:32768:8:1$...$..."
 # Ejemplo: "scrypt:32768:8:1$...$..."
 
 
